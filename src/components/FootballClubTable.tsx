@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Input } from "@/components/ui/input"
 
 type FootballClub = {
@@ -20,21 +20,30 @@ const getRowClassName = (index: number, name: string) => {
 export function FootballClubTable({ clubs }: { clubs: FootballClub[] }) {
   const [filter, setFilter] = useState('')
 
-  const filteredClubs = clubs.filter(club =>
-    club.name.toLowerCase().includes(filter.toLowerCase()) ||
-    club.league.toLowerCase().includes(filter.toLowerCase()) ||
-    club.nickname.toLowerCase().includes(filter.toLowerCase())
-  )
+  const filteredClubs = useMemo(() => {
+    return clubs.filter(club =>
+      club.name.toLowerCase().includes(filter.toLowerCase()) ||
+      club.league.toLowerCase().includes(filter.toLowerCase()) ||
+      club.nickname.toLowerCase().includes(filter.toLowerCase()) ||
+      club.level.toString().includes(filter.toLowerCase())
+    )
+  }, [clubs, filter])
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilter(e.target.value)
+  }
 
   return (
     <div>
-      <Input
-        type="text"
-        placeholder="Filter clubs..."
-        value={filter}
-        onChange={(e) => setFilter(e.target.value)}
-        className="mb-4 bg-gray-800 text-gray-100 border-gray-700 placeholder-gray-500"
-      />
+      <div className="mb-4">
+        <Input
+          type="text"
+          placeholder="Filter clubs..."
+          value={filter}
+          onChange={handleFilterChange}
+          className="bg-gray-800 text-gray-100 border-gray-700 placeholder-gray-500"
+        />
+      </div>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <thead>
