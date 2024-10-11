@@ -1,4 +1,6 @@
+import { AdComponent } from '@/components/AdComponent'
 import { FootballClubTable } from '@/components/FootballClubTable'
+import { Suspense } from 'react'
 
 async function getFootballClubs() {
   const res = await fetch('https://football-clubs-api.vercel.app/')
@@ -12,12 +14,26 @@ export default async function Home() {
   const footballClubs = await getFootballClubs()
 
   return (
-    <main className="min-h-screen bg-gray-900 text-gray-100 p-4">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold text-center text-purple-400 mb-2">EnglishFootball Clubs</h1>
-        <p className="text-center text-gray-400 mb-6">or at least most of them</p>
-        <FootballClubTable clubs={footballClubs} />
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-2">English Football Clubs</h1>
+      <p className="text-muted-foreground mb-4">or at least most of them</p>
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+        <div className="lg:col-span-3">
+          <Suspense fallback={<div>Loading...</div>}>
+            <FootballClubTable clubs={footballClubs} />
+          </Suspense>
+        </div>
+        <div>
+          <AdComponent 
+            title="Premium Membership" 
+            content="Get access to exclusive content and features with our Premium Membership!" 
+          />
+          <AdComponent 
+            title="Football Gear" 
+            content="Shop the latest football gear and support your favorite clubs!" 
+          />
+        </div>
       </div>
-    </main>
+    </div>
   )
 }

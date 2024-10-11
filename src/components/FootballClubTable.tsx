@@ -2,8 +2,13 @@
 
 import { useState, useMemo } from 'react'
 import { Input } from "@/components/ui/input"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 type FootballClub = {
+  id: number;
   name: string
   league: string
   nickname: string
@@ -19,6 +24,8 @@ const getRowClassName = (index: number, name: string) => {
 
 export function FootballClubTable({ clubs }: { clubs: FootballClub[] }) {
   const [filter, setFilter] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 10;
 
   const filteredClubs = useMemo(() => {
     return clubs.filter(club =>
@@ -29,43 +36,71 @@ export function FootballClubTable({ clubs }: { clubs: FootballClub[] }) {
     )
   }, [clubs, filter])
 
+  const totalPages = Math.ceil(filteredClubs.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const currentClubs = filteredClubs.slice(startIndex, endIndex)
+
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value)
   }
+  
 
   return (
-    <div>
-      <div className="mb-4">
+    <Card>
+      <CardHeader>
+        <CardTitle>English Football Clubs</CardTitle>
+      </CardHeader>
+      <CardContent>
         <Input
           type="text"
           placeholder="Filter clubs..."
           value={filter}
           onChange={handleFilterChange}
-          className="bg-gray-800 text-gray-100 border-gray-700 placeholder-gray-500"
+          className="mb-4"
         />
-      </div>
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-gray-800 text-left">
-              <th className="p-3 font-semibold">Name</th>
-              <th className="p-3 font-semibold">League</th>
-              <th className="p-3 font-semibold">Nickname</th>
-              <th className="p-3 font-semibold">Level</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredClubs.map((club, index) => (
-              <tr key={club.name} className={getRowClassName(index, club.name.toLowerCase())}>
-                <td className="p-3">{club.name}</td>
-                <td className="p-3">{club.league}</td>
-                <td className="p-3">{club.nickname}</td>
-                <td className="p-3">{club.level}</td>
-              </tr>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>League</TableHead>
+              <TableHead>Nickname</TableHead>
+              <TableHead>Level</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {currentClubs.map(club => (
+              <TableRow key={club.id} >
+                <TableCell>{club.name}</TableCell>
+                <TableCell>{club.league}</TableCell>
+                <TableCell>{club.nickname}</TableCell>
+                <TableCell>{club.level}</TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+          </TableBody>
+        </Table>
+        <div className="flex items-center justify-between mt-4">
+          <Button
+            variant="outline"
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+          >
+            <ChevronLeft className="h-4 w-4 mr-2" />
+            Previous
+          </Button>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <Button
+            variant="outline"
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+          >
+            Next
+            <ChevronRight className="h-4 w-4 ml-2" />
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
   )
 }
