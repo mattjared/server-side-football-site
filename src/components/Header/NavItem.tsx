@@ -37,7 +37,7 @@ export default function NavItem({ item }: NavItemProps) {
     <div className="relative group" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <Link
         href={item.href}
-        className="px-2 py-1 rounded-md text-sm font-medium hover:bg-purple-700 transition duration-150 ease-in-out flex items-center"
+        className="px-2 py-1 rounded-md text-sm font-medium hover:opacity-80 transition duration-150 ease-in-out flex items-center"
       >
         {item.name}
         {item.subitems.length > 0 && <ChevronDown className="ml-1 h-3 w-3" />}

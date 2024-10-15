@@ -25,16 +25,16 @@ export default function MobileMenu({ items }: MobileMenuProps) {
       </Button>
 
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-purple-900 overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-blue-900 overflow-y-auto">
           <div className="px-2 pt-2 pb-3 space-y-1">
             <div className="flex justify-between items-center mb-4">
               <Link href="/">
                 <Image
-                  src="/placeholder.svg"
+                  src="https://i.ibb.co/7kkTHMt/soccer-ball.jpg"
                   alt="Premier League logo"
                   width={96}
                   height={32}
-                  className="h-8 w-auto"
+                  className="h-10 w-10 w-auto rounded-full"
                 />
               </Link>
               <Button variant="ghost" onClick={() => setMobileMenuOpen(false)} className="text-white p-1">
@@ -44,7 +44,7 @@ export default function MobileMenu({ items }: MobileMenuProps) {
             {items.map((item) => (
               <div key={item.name} className="space-y-1">
                 <button
-                  className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-purple-700 transition duration-150 ease-in-out flex items-center justify-between"
+                  className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-700 transition duration-150 ease-in-out flex items-center justify-between"
                   onClick={() => setActiveDropdown(activeDropdown === item.name ? null : item.name)}
                   aria-expanded={activeDropdown === item.name}
                   aria-haspopup="true"
@@ -60,7 +60,7 @@ export default function MobileMenu({ items }: MobileMenuProps) {
                       <Link
                         key={subitem.name}
                         href={subitem.href}
-                        className="block px-3 py-2 rounded-md text-base font-medium text-purple-200 hover:text-white hover:bg-purple-700 transition duration-150 ease-in-out"
+                        className="block px-3 py-2 rounded-md text-base font-medium text-blue-200 hover:text-white hover:bg-blue-700 transition duration-150 ease-in-out"
                       >
                         {subitem.name}
                       </Link>
@@ -70,8 +70,8 @@ export default function MobileMenu({ items }: MobileMenuProps) {
               </div>
             ))}
           </div>
-          <div className="pt-4 pb-3 border-t border-purple-700 px-4">
-            <Button variant="outline" className="w-full text-white border-white bg-purple-700 hover:bg-purple-600">
+          <div className="pt-4 pb-3 border-t border-blue-700 px-4">
+            <Button variant="outline" className="w-full text-white hover:text-white border-white bg-blue-700 hover:bg-blue-600">
               Sign In
             </Button>
           </div>

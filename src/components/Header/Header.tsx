@@ -31,32 +31,31 @@ const mainNavItems = [
 
 export default function Header() {
   return (
-    <header className="w-full bg-gradient-to-r from-purple-800 to-purple-900 text-white">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
-        <div className="flex items-center justify-between h-14 sm:h-16">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <Link href="/">
-                <Image
-                  src="/placeholder.svg"
-                  alt="Premier League logo"
-                  width={96}
-                  height={32}
-                  className="h-8 w-auto"
-                />
-              </Link>
-            </div>
-            <nav className="hidden md:ml-6 md:flex md:space-x-1 lg:space-x-4">
-              {mainNavItems.map((item) => (
-                <NavItem key={item.name} item={item} />
-              ))}
-            </nav>
-          </div>
-          <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
-            <Button variant="outline" size="sm" className="text-white border-white bg-purple-700 hover:bg-purple-600">
-              Sign In
-            </Button>
-          </div>
+    <header className="w-full bg-blue-900 text-white shadow-lg">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src="https://i.ibb.co/7kkTHMt/soccer-ball.jpg"
+              alt="The League logo"
+              width={40}
+              height={40}
+              className="h-10 w-10 rounded-full"
+            />
+            <h1 className="text-xl font-bold">The League</h1>
+          </Link>
+        </div>
+        <nav className="hidden md:flex space-x-4">
+          {mainNavItems.map((item) => (
+            <NavItem key={item.name} item={item} />
+          ))}
+        </nav>
+        <div className="hidden md:block">
+          <Button variant="outline" size="sm" className="text-white bg-transparent hover:text-white border-white hover:bg-blue-800">
+            Sign In
+          </Button>
+        </div>
+        <div className="md:hidden">
           <MobileMenu items={mainNavItems} />
         </div>
       </div>

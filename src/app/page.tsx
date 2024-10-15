@@ -1,4 +1,5 @@
 import { AdComponent } from '@/components/AdComponent'
+import { BannerAd } from '@/components/Ads'
 import { FootballClubTable } from '@/components/FootballClubTable'
 import { Suspense } from 'react'
 
@@ -19,6 +20,7 @@ export default async function Home() {
       <p className="text-muted-foreground mb-4">or at least most of them</p>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
         <div className="lg:col-span-3">
+          <BannerAd />
           <Suspense fallback={<div>Loading...</div>}>
             <FootballClubTable clubs={footballClubs} />
           </Suspense>
@@ -27,10 +29,6 @@ export default async function Home() {
           <AdComponent 
             title="Premium Membership" 
             content="Get access to exclusive content and features with our Premium Membership!" 
-          />
-          <AdComponent 
-            title="Football Gear" 
-            content="Shop the latest football gear and support your favorite clubs!" 
           />
         </div>
       </div>

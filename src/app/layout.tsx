@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header/Header";
-
+import { SponsorAd } from "@/components/Ads";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -31,6 +31,11 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <aside className="hidden lg:block">
+          <div className="sticky top-8">
+            <SponsorAd />
+          </div>
+        </aside>
       </body>
     </html>
   );
