@@ -31,11 +31,11 @@ export default function RootLayout({
       >
         <Header />
         {children}
-        <aside className="hidden lg:block">
+        {/* <aside className="hidden lg:block">
           <div className="sticky top-8">
-            <SponsorAd />
+            <SponsorAd src=''/>
           </div>
-        </aside>
+        </aside> */}
       </body>
     </html>
   );
