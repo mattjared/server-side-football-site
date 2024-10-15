@@ -15,12 +15,12 @@ type FootballClub = {
   level: number
 }
 
-const getRowClassName = (index: number, name: string) => {
-  if (name.includes('promoted')) return 'bg-green-800'
-  if (name.includes('transferred')) return 'bg-purple-800'
-  if (name.includes('relegated') || name.includes('demoted')) return 'bg-red-900'
-  return index % 2 === 0 ? 'bg-purple-900' : 'bg-purple-800'
-}
+// const getRowClassName = (index: number, name: string) => {
+//   if (name.includes('promoted')) return 'bg-green-800'
+//   if (name.includes('transferred')) return 'bg-purple-800'
+//   if (name.includes('relegated') || name.includes('demoted')) return 'bg-red-900'
+//   return index % 2 === 0 ? 'bg-purple-900' : 'bg-purple-800'
+// }
 
 export function FootballClubTable({ clubs }: { clubs: FootballClub[] }) {
   const [filter, setFilter] = useState('')

@@ -26,11 +26,11 @@ export const BannerAd = ({ src } : { src?: string }) => (
 )
 
 
-export const SponsorAd = () => (
+export const SponsorAd = ( { src }: { src: string }) => (
   <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
     <div className="flex items-center justify-between">
       <Image
-        src="/placeholder.svg?height=50&width=120"
+        src={src}
         alt="Sponsor Logo"
         width={120}
         height={50}

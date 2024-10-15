@@ -14,7 +14,7 @@ interface MobileMenuProps {
   }[]
 }
 
-export default function MobileMenu({ items }: MobileMenuProps) {
+export function MobileMenu({ items }: MobileMenuProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 

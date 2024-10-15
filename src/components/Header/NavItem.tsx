@@ -12,7 +12,7 @@ interface NavItemProps {
   }
 }
 
-export default function NavItem({ item }: NavItemProps) {
+export function NavItem({ item }: NavItemProps) {
   const [isOpen, setIsOpen] = useState(false)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 

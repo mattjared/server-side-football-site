@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
-import MobileMenu from './MobileMenu'
-import NavItem from './NavItem'
+import { MobileMenu } from './MobileMenu'
+import { NavItem } from './NavItem'
 
 const mainNavItems = [
   { name: "Home", href: "/", subitems: [] },
@@ -29,7 +29,7 @@ const mainNavItems = [
   ]}
 ]
 
-export default function Header() {
+export function Header() {
   return (
     <header className="w-full bg-blue-900 text-white shadow-lg">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
