@@ -1,5 +1,4 @@
-import { AdComponent } from '@/components/AdComponent'
-import { BannerAd } from '@/components/Ads'
+import { BannerAd, VideoAd } from '@/components/Ads'
 import { FootballClubTable } from '@/components/FootballClubTable'
 import { Suspense } from 'react'
 
@@ -26,10 +25,7 @@ export default async function Home() {
           </Suspense>
         </div>
         <div>
-          <AdComponent 
-            title="Premium Membership" 
-            content="Get access to exclusive content and features with our Premium Membership!" 
-          />
+          <VideoAd />
         </div>
       </div>
     </div>

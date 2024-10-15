@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import { Button } from "./ui/button"
+import { Card, CardContent } from './ui/card'
 import { ShoppingBag } from 'lucide-react'
 
-export const BannerAd = () => (
+export const BannerAd = ({ src } : { src?: string }) => (
 <div className="mb-8 bg-gradient-to-r from-blue-600 to-blue-800 text-white p-6 rounded-lg shadow-md">
   <div className="flex items-center justify-between">
     <div>
@@ -14,7 +15,7 @@ export const BannerAd = () => (
       </Button>
     </div>
     <Image
-          src="https://i.ibb.co/T2HCqsS/premier-league.jpg"
+          src={src || "https://i.ibb.co/T2HCqsS/premier-league.jpg"}
           alt="Premier League Ball"
           width={200}
           height={200}
@@ -49,30 +50,26 @@ export const FantasyAd = () => (
   </div>
 )
 
-export const VideoAd = () => (
-  <div className="relative bg-black rounded-lg shadow-md mb-4 overflow-hidden">
-    <Image
-      src="/placeholder.svg?height=200&width=400"
-      alt="Video Thumbnail"
-      width={400}
-      height={200}
-      className="w-full"
-    />
-    <div className="absolute inset-0 flex items-center justify-center">
-      <Button variant="outline" className="bg-white text-black hover:bg-gray-200">
-        Watch Highlights
-      </Button>
-    </div>
+export const VideoAd = ({ src } : { src?: string}) => (
+  <div className="relative rounded-lg shadow-md mb-4">
+    <iframe
+      src={src || 'https://streamable.com/6cfvq6'}
+      allow='autoplay'
+      frameBorder='0'
+      sandbox='allow same origin'
+    >
+      Your browser does not support the video tag.
+    </iframe>
   </div>
 )
 
-export default function Ads() {
+export const BasicAd = ({ title, content }: { title: string; content: string }) => {
   return (
-    <div className="space-y-4">
-      <BannerAd />
-      <SponsorAd />
-      <FantasyAd />
-      <VideoAd />
-    </div>
+    <Card className="mb-4 bg-primary text-primary-foreground">
+      <CardContent className="p-4">
+        <h3 className="text-lg font-bold mb-2">{title}</h3>
+        <p>{content}</p>
+      </CardContent>
+    </Card>
   )
 }

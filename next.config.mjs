@@ -3,6 +3,7 @@ const nextConfig = {
     images: {
         remotePatterns: [
             { hostname: 'i.ibb.co' },
+            { hostname: 'streamable.com'}
         ],
     },
 };
